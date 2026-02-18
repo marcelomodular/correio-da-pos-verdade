@@ -49,7 +49,7 @@ As notícias são buscadas em tempo real via **RSS**, sem armazenamento em banco
 ### 1. Clone o repositório
 
 ```bash
-git clone https://github.com/seu-usuario/correio-da-pos-verdade.git
+git clone https://github.com/marcelomodular/correio-da-pos-verdade
 cd correio-da-pos-verdade
 ```
 
@@ -123,3 +123,4 @@ MIT — use, modifique e distribua livremente.
 ---
 
 *"A imprensa é a vista da nação."* — Hipólito da Costa, fundador do Correio Braziliense (1808)
+
