@@ -2,8 +2,6 @@
 
 > Agregador de notícias da imprensa independente e progressista brasileira, com interface inspirada nos jornais do início do século XX.
 
-![Interface do Correio da Pós-Verdade](docs/screenshot.png)
-
 ---
 
 ## Sobre o projeto
@@ -123,4 +121,5 @@ MIT — use, modifique e distribua livremente.
 ---
 
 *"A imprensa é a vista da nação."* — Hipólito da Costa, fundador do Correio Braziliense (1808)
+
 
