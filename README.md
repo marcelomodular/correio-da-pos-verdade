@@ -33,7 +33,8 @@ As notícias são buscadas em tempo real via **RSS**, sem armazenamento em banco
 - 📡 Agregação via RSS de +40 fontes
 - � Múltiplos parágrafos por artigo (mínimo 4)
 - �🖥️ Modo terminal (sem servidor web)
-- 📱 Layout responsivo com 4 colunas para desktop
+- � Visualização completa de artigos via scraping
+- � Layout responsivo com 4 colunas para desktop
 
 ---
 
@@ -41,6 +42,9 @@ As notícias são buscadas em tempo real via **RSS**, sem armazenamento em banco
 
 - **Python 3** + **Flask** — servidor web
 - **feedparser** — leitura de feeds RSS
+- **requests** — requisições HTTP
+- **beautifulsoup4** — parsing HTML
+- **python-dateutil** — manipulação de datas
 - **Jinja2** — templates HTML
 - **Google Fonts** — UnifrakturMaguntia, IM Fell English, Playfair Display, Libre Baskerville
 - **HTML/CSS** — design vintage responsivo
@@ -48,6 +52,8 @@ As notícias são buscadas em tempo real via **RSS**, sem armazenamento em banco
 ---
 
 ## Como rodar localmente
+
+**Pré-requisitos:** Certifique-se de ter o Python 3 (versão 3.6 ou superior) e o pip instalados no seu sistema.
 
 ### 1. Clone o repositório
 
@@ -104,7 +110,8 @@ politicagem/
 ├── LICENSE             # Licença MIT
 ├── .gitignore          # Arquivos ignorados pelo Git
 └── templates/
-    └── index.html      # Interface estilo jornal com 4 colunas
+    ├── index.html      # Interface estilo jornal com 4 colunas
+    └── visualizar.html  # Página para visualização completa de artigos
 ```
 
 ---
