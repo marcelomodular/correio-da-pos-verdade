@@ -1,9 +1,11 @@
 const path = require('path');
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, shell } = require('electron');
 const { startServer, stopServer } = require('./server');
 
 let mainWindow;
 let serverRef;
+
+const APP_ICON_PATH = path.resolve(__dirname, '..', 'assets', 'politicagem-p.ico');
 
 function createChildWindow(url) {
   const child = new BrowserWindow({
@@ -13,6 +15,7 @@ function createChildWindow(url) {
     minHeight: 600,
     autoHideMenuBar: true,
     parent: mainWindow,
+    icon: APP_ICON_PATH,
     webPreferences: {
       contextIsolation: true,
       nodeIntegration: false,
@@ -30,6 +33,7 @@ function createWindow(port) {
     minWidth: 1000,
     minHeight: 700,
     autoHideMenuBar: true,
+    icon: APP_ICON_PATH,
     webPreferences: {
       contextIsolation: true,
       nodeIntegration: false,
@@ -45,13 +49,21 @@ function createWindow(port) {
       return { action: 'deny' };
     }
 
-    return { action: 'allow' };
+    if (/^https?:\/\//i.test(url)) {
+      shell.openExternal(url);
+    }
+
+    return { action: 'deny' };
   });
 
   mainWindow.loadURL(appOrigin);
 }
 
 app.whenReady().then(async () => {
+  if (process.platform === 'win32') {
+    app.setAppUserModelId('politicagem.desktop');
+  }
+
   const dataDir = path.join(app.getPath('userData'), 'politicagem');
   serverRef = await startServer({ dataDir });
   createWindow(serverRef.port);
