@@ -1,83 +1,127 @@
+import json
+import threading
+import time
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from pathlib import Path
+
 import feedparser
-
-# ── RSS Sources ──────────────────────────────────────────────────────────────
-# Each entry: (rss_url, display_name)
-# Sources without a working public RSS feed are omitted or use best-known URL.
-SOURCES = [
-    # ── Imprensa independente / investigativa ──
-    ("https://apublica.org/feed/",                          "Agência Pública"),
-    ("https://theintercept.com/brasil/feed/",               "Intercept Brasil"),
-    ("https://ponte.org/feed/",                             "Ponte Jornalismo"),
-    ("https://observatoriodaimprensa.com.br/feed/",         "Observatório da Imprensa"),
-    ("https://outraspalavras.net/feed",                     "Outras Palavras"),
-    ("https://www.brasildefato.com.br/feed/",               "Brasil de Fato"),
-    ("https://ojoioeotrigo.com.br/feed/",                   "O Joio e o Trigo"),
-    ("https://www.nucleo.jor.br/rss/",                      "Núcleo Jornalismo"),
-    ("https://agenciasportlight.com.br/index.php/feed/",    "Agência Sportlight"),
-    ("https://passapalavra.info/feed/",                     "Passa Palavra"),
-    ("https://www.nexojornal.com.br/rss.xml",               "Nexo Jornal"),
-    
-
-    # ── Imprensa de esquerda / progressista ──
-    ("https://vermelho.org.br/feed/",                       "Vermelho"),
-    ("https://jacobin.com.br/feed/",                        "Jacobin Brasil"),
-    ("https://mst.org.br/feed/",                            "MST"),
-    ("https://iclnoticias.com.br/feed/",                    "ICL Notícias"),
-    ("https://consultapopularoficial.org/feed/",            "Consulta Popular"),
-    ("https://piaui.uol.com.br/feed/",                      "Piauí"),
-
-    # ── Imprensa de guerra ──
-    ("https://noticiabrasil.net.br/export/rss2/archive/index.xml", "Sputnik Brasil"),
-    ("https://www.aljazeera.com/xml/rss/all.xml",            "Al Jazeera"),
-    ("https://operamundi.uol.com.br/rss",                    "Opera Mundi"),
-    ("https://feeds.elpais.com/mrss-s/pages/ep/site/elpais.com/section/internacional/portada", "El País Mundo"),
-
-    # ── Embaixadas e organizações internacionais ──
-    ("https://embaixadacuba.org.br/feed/",                  "Embaixada de Cuba"),
-    ("https://embaixadavenezuela.org.br/feed/",             "Embaixada da Venezuela"),
-    ("https://embaixadabolivia.org.br/feed/",               "Embaixada da Bolívia"),
-    ("https://embaixadanicaragua.org.br/feed/",             "Embaixada da Nicarágua"),
-    ("https://embaixadaequador.org.br/feed/",               "Embaixada do Equador"),
-    ("https://embaixadachile.org.br/feed/",                 "Embaixada do Chile"),
-    ("https://embaixadaargentina.org.br/feed/",             "Embaixada da Argentina"),
-    ("https://embaixadamexico.org.br/feed/",                "Embaixada do México"),
-    ("https://embaixadauruguai.org.br/feed/",               "Embaixada do Uruguai"),
-    ("https://embaixadaparaguai.org.br/feed/",              "Embaixada do Paraguai"),
-    ("https://embaixadaperu.org.br/feed/",                  "Embaixada do Peru"),
+import requests
 
 
+REQUEST_TIMEOUT_SECONDS = 10
+CACHE_TTL_SECONDS = 120
+MAX_WORKERS = 8
+USER_AGENT = (
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+    "AppleWebKit/537.36 (KHTML, like Gecko) "
+    "Chrome/122.0.0.0 Safari/537.36"
+)
+SOURCES_FILE = Path(__file__).resolve().with_name("news_sources.json")
 
 
+_cache_lock = threading.Lock()
+_cache_state = {
+    "expires_at": 0.0,
+    "limit_per_source": None,
+    "news": [],
+}
 
-    # ── Outros ──
-    ("https://revistaopera.com.br/feed/",                   "Revista Opera"),
-    ("https://subverta.com.br/feed/",                       "Subverta"),
-    ("https://ominhocario.com.br/feed/",                    "O Minhocário"),
-]
+
+def _load_sources():
+    try:
+        parsed = json.loads(SOURCES_FILE.read_text(encoding="utf-8"))
+    except Exception:
+        return []
+
+    normalized = []
+    for item in parsed:
+        if not isinstance(item, list) or len(item) != 2:
+            continue
+        url, name = item
+        if not isinstance(url, str) or not isinstance(name, str):
+            continue
+        normalized.append((url.strip(), name.strip()))
+
+    return normalized
+
+
+SOURCES = _load_sources()
+
+
+def _fetch_feed(url):
+    response = requests.get(
+        url,
+        timeout=REQUEST_TIMEOUT_SECONDS,
+        headers={"User-Agent": USER_AGENT},
+    )
+    response.raise_for_status()
+    return response.content
 
 
 def get_rss_news(url, source_name, limit=5):
-    """Fetch articles from a single RSS feed."""
     try:
-        feed = feedparser.parse(url)
+        feed_data = _fetch_feed(url)
+        feed = feedparser.parse(feed_data)
         noticias = []
+
         for entry in feed.entries[:limit]:
-            noticias.append({
-                'titulo':  entry.get('title', 'Sem título'),
-                'link':    entry.get('link', '#'),
-                'resumo':  entry.get('summary', ''),
-                'fonte':   source_name,
-                'data':    entry.get('published', ''),
-            })
+            noticias.append(
+                {
+                    "titulo": entry.get("title", "Sem titulo"),
+                    "link": entry.get("link", "#"),
+                    "resumo": entry.get("summary", ""),
+                    "fonte": source_name,
+                    "data": entry.get("published", ""),
+                }
+            )
+
         return noticias
-    except Exception as e:
-        print(f"Erro ao buscar {source_name}: {e}")
+    except Exception:
         return []
 
 
-def get_all_news(limit_per_source=5):
-    """Aggregate news from all sources."""
+def _fetch_all_sources(limit_per_source, sources):
     all_news = []
-    for url, name in SOURCES:
-        all_news.extend(get_rss_news(url, name, limit=limit_per_source))
-    return all_news
+    max_workers = min(MAX_WORKERS, max(1, len(sources)))
+
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        futures = {
+            executor.submit(get_rss_news, url, name, limit_per_source): (url, name)
+            for url, name in sources
+        }
+
+        for future in as_completed(futures):
+            all_news.extend(future.result())
+
+    deduplicated = []
+    seen_links = set()
+    for noticia in all_news:
+        link = noticia.get("link")
+        if link and link in seen_links:
+            continue
+        if link:
+            seen_links.add(link)
+        deduplicated.append(noticia)
+
+    return deduplicated
+
+
+def get_all_news(limit_per_source=5):
+    now = time.time()
+    with _cache_lock:
+        has_valid_cache = (
+            _cache_state["news"]
+            and _cache_state["limit_per_source"] == limit_per_source
+            and _cache_state["expires_at"] > now
+        )
+        if has_valid_cache:
+            return list(_cache_state["news"])
+
+    refreshed_news = _fetch_all_sources(limit_per_source, SOURCES)
+
+    with _cache_lock:
+        _cache_state["news"] = list(refreshed_news)
+        _cache_state["limit_per_source"] = limit_per_source
+        _cache_state["expires_at"] = time.time() + CACHE_TTL_SECONDS
+
+    return refreshed_news

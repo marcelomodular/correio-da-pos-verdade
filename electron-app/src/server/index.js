@@ -1,4 +1,6 @@
+const dns = require('dns').promises;
 const express = require('express');
+const net = require('net');
 const path = require('path');
 const cheerio = require('cheerio');
 const { JSDOM } = require('jsdom');
@@ -8,12 +10,30 @@ const channelStore = require('./channelStore');
 
 let server;
 
-function sanitizeHtml(html = '') {
-  return String(html)
-    .replace(/<script[\s\S]*?<\/script>/gi, '')
-    .replace(/<style[\s\S]*?<\/style>/gi, '')
-    .replace(/<iframe[\s\S]*?<\/iframe>/gi, '');
-}
+const REQUEST_TIMEOUT_MS = 15000;
+const MAX_REDIRECTS = 3;
+const USER_AGENT =
+  'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36';
+const ALLOWED_TAGS = new Set([
+  'p',
+  'br',
+  'strong',
+  'b',
+  'em',
+  'i',
+  'ul',
+  'ol',
+  'li',
+  'blockquote',
+  'h1',
+  'h2',
+  'h3',
+  'h4',
+  'h5',
+  'h6',
+  'a',
+  'img',
+]);
 
 function normalizeText(text = '') {
   return String(text).replace(/\s+/g, ' ').trim();
@@ -40,13 +60,144 @@ function looksLikeDateNoise(text = '') {
   return patterns.some((pattern) => pattern.test(value));
 }
 
-function cleanArticleHtml(html, { titulo = '', subtitulo = '', fonteSite = '' } = {}) {
-  const $ = cheerio.load(`<article id="content-root">${sanitizeHtml(html)}</article>`, {
+function isPrivateIPv4(ip) {
+  const parts = ip.split('.').map((part) => Number(part));
+  if (parts.length !== 4 || parts.some((part) => Number.isNaN(part))) return true;
+
+  const [a, b] = parts;
+  if (a === 10 || a === 127 || a === 0) return true;
+  if (a === 169 && b === 254) return true;
+  if (a === 172 && b >= 16 && b <= 31) return true;
+  if (a === 192 && b === 168) return true;
+
+  return false;
+}
+
+function isPrivateIPv6(ip) {
+  const value = ip.toLowerCase();
+  if (value === '::1' || value === '::') return true;
+  if (value.startsWith('fc') || value.startsWith('fd')) return true;
+  if (value.startsWith('fe8') || value.startsWith('fe9') || value.startsWith('fea') || value.startsWith('feb')) {
+    return true;
+  }
+  return false;
+}
+
+function isBlockedIp(ip) {
+  const ipType = net.isIP(ip);
+  if (ipType === 4) return isPrivateIPv4(ip);
+  if (ipType === 6) return isPrivateIPv6(ip);
+  return true;
+}
+
+async function isPublicHttpUrl(url) {
+  let parsed;
+  try {
+    parsed = new URL(String(url));
+  } catch {
+    return false;
+  }
+
+  if (!['http:', 'https:'].includes(parsed.protocol)) return false;
+  if (!parsed.hostname) return false;
+  if (parsed.username || parsed.password) return false;
+  if (parsed.hostname.toLowerCase() === 'localhost') return false;
+
+  if (net.isIP(parsed.hostname)) {
+    return !isBlockedIp(parsed.hostname);
+  }
+
+  try {
+    const addresses = await dns.lookup(parsed.hostname, { all: true, verbatim: true });
+    if (!addresses.length) return false;
+    return addresses.every((entry) => !isBlockedIp(entry.address));
+  } catch {
+    return false;
+  }
+}
+
+function resolveHttpUrl(candidate, baseUrl) {
+  try {
+    const resolved = new URL(candidate, baseUrl);
+    if (!['http:', 'https:'].includes(resolved.protocol)) {
+      return null;
+    }
+    return resolved.href;
+  } catch {
+    return null;
+  }
+}
+
+function sanitizeHtmlFragment(html = '', baseUrl = '') {
+  const $ = cheerio.load(`<article id="content-root">${html}</article>`, {
     decodeEntities: false,
   });
   const root = $('#content-root');
 
-  root.find('script, style, noscript, nav, footer, header, aside, form, button, input, iframe, svg').remove();
+  root.find('script, style, noscript, nav, footer, header, aside, form, button, input, iframe, svg, canvas').remove();
+
+  root.find('*').each((_, el) => {
+    const node = $(el);
+    const tagName = (el.tagName || '').toLowerCase();
+
+    if (!ALLOWED_TAGS.has(tagName)) {
+      node.replaceWith(node.html() || node.text() || '');
+      return;
+    }
+
+    const attrs = { ...(el.attribs || {}) };
+    for (const [name, value] of Object.entries(attrs)) {
+      const lower = name.toLowerCase();
+      const removeAttr = lower.startsWith('on') || ['style', 'class', 'id', 'srcset', 'loading'].includes(lower);
+      if (removeAttr) {
+        node.removeAttr(name);
+        continue;
+      }
+
+      if (tagName === 'a' && lower !== 'href' && lower !== 'title') {
+        node.removeAttr(name);
+      }
+
+      if (tagName === 'img' && lower !== 'src' && lower !== 'alt' && lower !== 'title') {
+        node.removeAttr(name);
+      }
+
+      if (tagName !== 'a' && tagName !== 'img') {
+        node.removeAttr(name);
+      }
+
+      if (tagName === 'a' && lower === 'href') {
+        const safeHref = resolveHttpUrl(value, baseUrl);
+        if (!safeHref) {
+          node.replaceWith(node.text());
+          return;
+        }
+        node.attr('href', safeHref);
+        node.attr('target', '_blank');
+        node.attr('rel', 'noopener noreferrer');
+      }
+
+      if (tagName === 'img' && lower === 'src') {
+        const safeSrc = resolveHttpUrl(value, baseUrl);
+        if (!safeSrc) {
+          node.remove();
+          return;
+        }
+        node.attr('src', safeSrc);
+      }
+    }
+  });
+
+  return root.html() || '';
+}
+
+function cleanArticleHtml(html, { titulo = '', subtitulo = '', fonteSite = '', baseUrl = '' } = {}) {
+  const sanitized = sanitizeHtmlFragment(html, baseUrl);
+  const $ = cheerio.load(`<article id="content-root">${sanitized}</article>`, {
+    decodeEntities: false,
+  });
+  const root = $('#content-root');
+
   root.find('[class*="share"], [class*="social"], [class*="related"], [class*="newsletter"], [class*="banner"], [class*="breadcrumb"], [class*="advert"], [id*="share"], [id*="social"]').remove();
 
   const seen = new Set();
@@ -84,9 +235,9 @@ function cleanArticleHtml(html, { titulo = '', subtitulo = '', fonteSite = '' } 
       'telegram',
       'baixe o nosso aplicativo',
       'conteudos exclusivos',
-      'conteúdos exclusivos',
+      'conteudos exclusivos',
       'grande midia',
-      'grande mídia',
+      'grande midia',
       'siga a ',
       'siga-nos',
       'assine',
@@ -121,18 +272,6 @@ function cleanArticleHtml(html, { titulo = '', subtitulo = '', fonteSite = '' } 
     }
   });
 
-  root.find('img').each((_, el) => {
-    const node = $(el);
-    const src = node.attr('src') || node.attr('data-src') || node.attr('data-lazy-src');
-    if (!src) {
-      node.remove();
-      return;
-    }
-    node.attr('src', src);
-    node.removeAttr('srcset');
-    node.removeAttr('loading');
-  });
-
   const cleanedHtml = root.html() || '';
   const cleanedTextLength = normalizeText(root.text()).length;
 
@@ -140,41 +279,52 @@ function cleanArticleHtml(html, { titulo = '', subtitulo = '', fonteSite = '' } 
     return cleanedHtml;
   }
 
-  const fallback$ = cheerio.load(`<article id="fallback-root">${sanitizeHtml(html)}</article>`, {
-    decodeEntities: false,
-  });
-  const fallbackRoot = fallback$('#fallback-root');
-  fallbackRoot.find('script, style, noscript, nav, footer, header, aside, form, button, input, iframe, svg').remove();
-  fallbackRoot.find('[class*="share"], [class*="social"], [class*="related"], [class*="newsletter"], [class*="banner"], [class*="breadcrumb"], [class*="advert"], [id*="share"], [id*="social"]').remove();
-
-  return fallbackRoot.html() || cleanedHtml;
+  return sanitizeHtmlFragment(html, baseUrl) || cleanedHtml;
 }
 
-function resolveImageUrl(image, baseUrl) {
-  if (!image) return null;
-  try {
-    return new URL(image, baseUrl).href;
-  } catch {
-    return image;
+async function fetchPublicUrl(url) {
+  let currentUrl = String(url);
+
+  for (let i = 0; i <= MAX_REDIRECTS; i += 1) {
+    if (!(await isPublicHttpUrl(currentUrl))) {
+      throw new Error('URL bloqueada por politica de seguranca.');
+    }
+
+    const response = await fetch(currentUrl, {
+      headers: {
+        'User-Agent': USER_AGENT,
+        Accept: 'text/html,application/xhtml+xml',
+      },
+      redirect: 'manual',
+      signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
+    });
+
+    const location = response.headers.get('location');
+    if (response.status >= 300 && response.status < 400 && location) {
+      const nextUrl = resolveHttpUrl(location, currentUrl);
+      if (!nextUrl) {
+        throw new Error('Redirecionamento invalido.');
+      }
+      currentUrl = nextUrl;
+      continue;
+    }
+
+    if (!response.ok) {
+      throw new Error(`Falha ao carregar artigo (${response.status})`);
+    }
+
+    return { finalUrl: currentUrl, response };
   }
+
+  throw new Error('Redirecionamentos excessivos.');
 }
 
 async function extractContent(url) {
-  const response = await fetch(url, {
-    headers: {
-      'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
-      Accept: 'text/html,application/xhtml+xml',
-    },
-    signal: AbortSignal.timeout(15000),
-  });
-
-  if (!response.ok) {
-    throw new Error(`Falha ao carregar artigo (${response.status})`);
-  }
+  const { finalUrl, response } = await fetchPublicUrl(url);
 
   const html = await response.text();
   const $ = cheerio.load(html);
-  const dom = new JSDOM(html, { url });
+  const dom = new JSDOM(html, { url: finalUrl });
   const reader = new Readability(dom.window.document);
   const article = reader.parse();
 
@@ -207,13 +357,14 @@ async function extractContent(url) {
     titulo: article.title || $('title').text() || '',
     subtitulo,
     fonteSite,
+    baseUrl: finalUrl,
   }).slice(0, 80000);
 
   return {
     sucesso: true,
     titulo: article.title || $('title').text() || 'Sem titulo',
     subtitulo: normalizeText(subtitulo),
-    imagem: resolveImageUrl(firstImage, url),
+    imagem: firstImage ? resolveHttpUrl(firstImage, finalUrl) : null,
     corpoHtml,
   };
 }
@@ -275,10 +426,14 @@ async function startServer({ dataDir } = {}) {
     }
 
     try {
+      if (!(await isPublicHttpUrl(String(url)))) {
+        throw new Error('URL bloqueada por politica de seguranca.');
+      }
+
       const data = await extractContent(String(url));
       res.json(data);
     } catch (error) {
-      res.status(500).json({ error: `Erro ao extrair conteudo: ${error.message}` });
+      res.status(400).json({ error: `Erro ao extrair conteudo: ${error.message}` });
     }
   });
 

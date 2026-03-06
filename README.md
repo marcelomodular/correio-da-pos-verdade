@@ -150,3 +150,22 @@ MIT — use, modifique e distribua livremente.
 *"A imprensa é a vista da nação."* — Hipólito da Costa, fundador do Correio Braziliense (1808)
 
 
+
+## Onboarding CLI
+
+Para facilitar a primeira configuracao e criar atalho com icone do Politicagem:
+
+```bash
+python onboard_cli.py
+```
+
+Modo automatico (sem perguntas):
+
+```bash
+python onboard_cli.py --auto
+```
+
+O onboarding:
+- explica a proposta do projeto (agregador RSS sem armazenamento local);
+- instala dependencias Python e Electron;
+- cria atalho na Area de Trabalho (Windows) usando o icone `electron-app/assets/politicagem-p.ico`.

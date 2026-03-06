@@ -39,7 +39,7 @@ async function loadArticle() {
     byId('loading').style.display = 'none';
     const content = byId('content');
     content.style.display = 'block';
-    content.innerHTML = `<h3>${escapeHtml(data.titulo || titulo)}</h3>${data.conteudo}`;
+    content.innerHTML = `<h3>${escapeHtml(data.titulo || titulo)}</h3>${data.corpoHtml || ''}`;
 
     if (data.imagem) {
       const img = byId('article-image');
