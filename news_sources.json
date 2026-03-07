@@ -33,5 +33,15 @@
   ["https://embaixadaperu.org.br/feed/", "Embaixada do Peru"],
   ["https://revistaopera.com.br/feed/", "Revista Opera"],
   ["https://subverta.com.br/feed/", "Subverta"],
-  ["https://ominhocario.com.br/feed/", "O Minhocario"]
+  ["https://ominhocario.com.br/feed/", "O Minhocario"],
+  ["https://fpabramo.org.br/feed/", "Fundação Perseu Abramo"],
+  ["https://pcb.org.br/feed/", "PCB"],
+  ["https://www.psol.org.br/feed/", "PSOL"],
+  ["https://www.pstu.org.br/feed/", "PSTU"],
+  ["https://www.pcdob.org.br/feed/", "PCdoB"],
+  ["https://www.pt.org.br/feed/", "Partido dos Trabalhadores"],
+  ["https://www.cut.org.br/feed/", "CUT - Central Única dos Trabalhadores"],
+  ["https://www.ctb.org.br/feed/", "CTB - Central dos Trabalhadores e Trabalhadoras"],
+  ["https://www.nova.org.br/feed/", "Nova Central Sindical"],
+  ["https://www.csb.org.br/feed/", "CSB - Central dos Sindicatos Brasileiros"]
 ]
