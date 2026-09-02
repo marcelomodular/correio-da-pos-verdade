@@ -1,8 +1,3 @@
-# 📰 Politicagem
-
-> Agregador de notícias da imprensa progressista brasileira e latino-americana, com interface inspirada nos jornais do início do século XX.
-
----
 
 ## Sobre o projeto
 
@@ -12,29 +7,20 @@ As notícias são buscadas em tempo real via **RSS**, sem armazenamento em banco
 
 ---
 
-## Fontes monitoradas
-
-| Categoria | Veículos |
-|---|---|
-| Imprensa investigativa | Agência Pública, Intercept Brasil, Ponte Jornalismo, Observatório da Imprensa |
-| Imprensa progressista | Vermelho, Opera Mundi, Jacobin Brasil, Le Monde Diplomatique, MST, ICL Notícias, Revista Fórum, Jornal GGN, Carta Capital, Brasil de Fato, Rede Brasil Atual, Resistência, Esquerda.net, Crítica HN, Consulta Socialista, Juventude Rebelde |
-| Partidos / organizações | Fundação Perseu Abramo, PCB, PSOL, PSTU, PCdoB, PT, CUT, CTB, Nova Central Sindical, CSB |
-| Embaixadas | Cuba, Venezuela, Bolívia, Nicarágua, Equador, Chile, Argentina, México, Uruguai, Paraguai, Peru |
-| Outros | Revista Opera, Jones Manoel, Subverta, O Minhocário |
-
----
-
 ## Funcionalidades
 
-- 🗞️ Interface estilo jornal impresso dos anos 1930
-- 🎲 Seleção aleatória da notícia principal da capa
-- � Ordenação cronológica por horário de publicação
-- �🔎 Busca por palavra-chave em tempo real
-- 📡 Agregação via RSS de +40 fontes
-- � Múltiplos parágrafos por artigo (mínimo 4)
-- �🖥️ Modo terminal (sem servidor web)
-- � Visualização completa de artigos via scraping
-- � Layout responsivo com 4 colunas para desktop
+
+- Tema escuro monocromático
+- Seleção aleatória da notícia principal da capa
+- Ordenação cronológica por horário de publicação
+- Busca por palavra-chave em tempo real
+- Agregação via RSS de +40 fontes
+- Múltiplos parágrafos por artigo (mínimo 4)
+- Modo terminal (sem servidor web)
+- Visualização completa de artigos via scraping
+- Layout responsivo com 4 colunas para desktop
+- Correção de quebra de texto em colunas
+- Popup de doação PIX configurado para 10 minutos
 
 ---
 
@@ -45,15 +31,19 @@ As notícias são buscadas em tempo real via **RSS**, sem armazenamento em banco
 - **requests** — requisições HTTP
 - **beautifulsoup4** — parsing HTML
 - **python-dateutil** — manipulação de datas
+- **readability-lxml** — extração de conteúdo de páginas web
+- **lxml_html_clean** — compatibilidade com Python 3.13+
 - **Jinja2** — templates HTML
 - **Google Fonts** — UnifrakturMaguntia, IM Fell English, Playfair Display, Libre Baskerville
-- **HTML/CSS** — design vintage responsivo
+- **HTML/CSS** — design vintage responsivo com tema escuro monocromático
 
 ---
 
 ## Como rodar localmente
 
 **Pré-requisitos:** Certifique-se de ter o Python 3 (versão 3.6 ou superior) e o pip instalados no seu sistema.
+
+**Nota de compatibilidade:** O projeto foi testado e funciona com Python 3.13. As dependências foram atualizadas para garantir compatibilidade com versões mais recentes do Python.
 
 ### 1. Clone o repositório
 

@@ -21,20 +21,20 @@
         }
 
         :root {
-            --paper: #f2e8d5;
-            --paper2: #e8dcc4;
-            --ink: #1a1208;
-            --ink-mid: #3a2e1a;
-            --ink-faint: #7a6a50;
-            --rule: #2a1e0a;
-            --red: #8b1a1a;
+            --paper: #1a1a1a;
+            --paper2: #252525;
+            --ink: #e0e0e0;
+            --ink-mid: #b0b0b0;
+            --ink-faint: #808080;
+            --rule: #404040;
+            --red: #6a6a6a;
             --col-gap: 18px;
         }
 
         body {
-            background: #b0a080;
+            background: #0a0a0a;
             background-image:
-                repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(0, 0, 0, 0.04) 28px, rgba(0, 0, 0, 0.04) 29px);
+                repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(255, 255, 255, 0.03) 28px, rgba(255, 255, 255, 0.03) 29px);
             font-family: 'Libre Baskerville', Georgia, serif;
             color: var(--ink);
             min-height: 100vh;
@@ -48,7 +48,7 @@
             background: var(--paper);
             background-image:
                 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E"),
-                linear-gradient(to bottom, #f5ead8 0%, #ede0c4 100%);
+                linear-gradient(to bottom, #1a1a1a 0%, #252525 100%);
             box-shadow: 0 4px 40px rgba(0, 0, 0, 0.45), inset 0 0 80px rgba(0, 0, 0, 0.06);
             padding: 0 0 40px;
         }
@@ -223,6 +223,8 @@
         .col {
             padding: 16px var(--col-gap) 16px 0;
             border-right: 1px solid var(--rule);
+            overflow-wrap: break-word;
+            word-break: break-word;
         }
 
         .col:last-child {
@@ -244,6 +246,8 @@
             margin-bottom: 20px;
             padding-bottom: 18px;
             border-bottom: 1px solid var(--ink-faint);
+            overflow-wrap: break-word;
+            word-break: break-word;
         }
 
         .article:last-child {
@@ -292,6 +296,8 @@
             text-align: justify;
             hyphens: auto;
             margin-bottom: 10px;
+            overflow-wrap: break-word;
+            word-break: break-word;
         }
 
         .article-content {
@@ -416,6 +422,8 @@
             hyphens: auto;
             margin-bottom: 10px;
             text-indent: 1em;
+            overflow-wrap: break-word;
+            word-break: break-word;
         }
 
         /* ── Wide two-column section ── */
@@ -430,6 +438,8 @@
         .columns-2 .col {
             padding: 14px var(--col-gap) 14px 0;
             border-right: 1px solid var(--rule);
+            overflow-wrap: break-word;
+            word-break: break-word;
         }
 
         .columns-2 .col:last-child {
@@ -861,8 +871,8 @@
             });
         }
 
-        // Start timer to show modal after 30 seconds
-        pixTimeout = setTimeout(showPixModal, 30000);
+        // Start timer to show modal after 10 minutes
+        pixTimeout = setTimeout(showPixModal, 600000);
 
         // Close modal when clicking outside
         window.onclick = function(event) {
