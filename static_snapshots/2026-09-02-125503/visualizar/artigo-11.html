@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ titulo }} - Politicagem</title>
+    <title>Livro traz memórias do período da pandemia em histórias para crianças - Politicagem</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link
         href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap"
@@ -301,16 +301,16 @@
 
         <div class="viewer-header">
             <img id="article-image" class="viewer-image" style="display: none;">
-            <h1 class="viewer-title">{{ titulo }}</h1>
+            <h1 class="viewer-title">Livro traz memórias do período da pandemia em histórias para crianças</h1>
             <div class="viewer-meta">
-                <span class="source-tag">{{ fonte }}</span>
+                <span class="source-tag">Fundação Perseu Abramo</span>
                 <span>Visualizador de Notícias</span>
             </div>
         </div>
 
         <div class="viewer-controls">
             <a href="/" class="btn btn-secondary">← Voltar ao Politicagem</a>
-            <a href="{{ url }}" target="_blank" class="btn">Abrir no Site Original →</a>
+            <a href="https://fpabramo.org.br/livro-traz-memorias-do-periodo-da-pandemia-em-historias-para-criancas/" target="_blank" class="btn">Abrir no Site Original →</a>
 
             <div class="view-toggle">
                 <button class="toggle-btn active" onclick="showExtracted()">Texto Extraído</button>
@@ -320,45 +320,32 @@
 
         <div class="viewer-content">
             <div id="extracted-view">
-                {% if static_mode and article_data %}
+                
                     <div id="extracted-content" class="content-text">
-                        {% if article_data.sucesso %}
-                            {% if article_data.imagem %}
-                            <img src="{{ article_data.imagem }}" class="viewer-image visible" alt="Imagem do artigo">
-                            {% endif %}
+                        
+                            
+                            <img src="https://fpabramo.org.br/wp-content/uploads/2026/09/imag-focus.webp" class="viewer-image visible" alt="Imagem do artigo">
+                            
                             <p style="font-size: 0.8rem; color: var(--ink-faint); margin-bottom: 16px;">
-                                Título extraído: {{ article_data.titulo or 'N/A' }}
+                                Título extraído: Livro traz memórias do período da pandemia em histórias para crianças
                             </p>
-                            {{ article_data.conteudo | safe }}
-                            {% if article_data.aviso %}
-                            <p style="font-size: 0.8rem; color: var(--red); margin-top: 16px; font-style: italic;">
-                                {{ article_data.aviso }}
-                            </p>
-                            {% endif %}
-                        {% else %}
-                            <div class="content-error">
-                                <p>Falha ao extrair o conteúdo estático.</p>
-                                <p style="font-size: 0.9rem; margin-top: 12px;">{{ article_data.error or 'Erro desconhecido' }}</p>
-                                <p style="font-size: 0.8rem; margin-top: 16px;">
-                                    <a href="#" onclick="showIframe(); return false;" style="color: var(--red);">
-                                        Tente visualizar o site original
-                                    </a>
-                                </p>
-                            </div>
-                        {% endif %}
+                            
+<p>O livro infantil <em>E aí, como foi na pandemia?</em>, de autoria da pesquisadora Ana Maura Tomesani, nasceu diretamente da pesquisa científica e da escuta comunitária. <br/><br/>A obra foi inspirada no acervo do projeto <a href="https://periferiasnapandemia.fpabramo.org.br/" rel="noopener noreferrer" target="_blank">Memorial Periferias na Pandemia</a> desenvolvido pelo Centro de Estudos em Conflito e Paz do Núcleo de Pesquisa em Relações Internacionais da Universidade de São Paulo (CCP/NUPRI/USP) <strong>em parceria com a Fundação Perseu Abramo, através do projeto Reconexão Periferias</strong>. Durante seis anos, a iniciativa reuniu testemunhos de moradores de periferias de todo o país sobre suas vivências na crise sanitária.</p>
+<p>A autora transformou essa base de dados factual e socioterritorial em uma narrativa acessível, afetuosa e profundamente realista para o público infantil. A história acompanha o menino Kauan, de 12 anos, morador da Zona Sul de São Paulo, que participa de um projeto escolar de troca de cartas com crianças de diversas regiões do Brasil — de comunidades quilombolas no Tocantins a territórios indígenas em Roraima, passando pelo campo em Alagoas, periferias do Pará e bairros urbanos no Rio de Janeiro.<br/><br/>“<em>Este livro foi construído baseado em relatos de sobreviventes. Queremos mostrar às crianças que a ciência e a memória coletiva nos ajudam a entender o mundo e a transformar a dor em solidariedade, aprendizado e esperança”, </em>afirma a autora.</p>
+<p>À medida que os anos passam, ocorre uma inevitável mudança geracional: as crianças que hoje estão nos anos iniciais do Ensino Fundamental eram bebês durante o ápice da crise sanitária ou nem haviam nascido. Para elas, a pandemia deixará de ser uma lembrança direta para se tornar uma memória social transmitida.</p>
+<p>Para os professores, abordar o tema exige cuidado e metodologia. O livro <em>E aí, como foi na pandemia?</em> foi concebido justamente para funcionar como esse disparador pedagógico, criando uma ponte entre a experiência recente da pandemia e a sala de aula. Nesse sentido, oferece aos educadores duas possibilidades de trabalho: primeiro, apresenta situações que estimulam as crianças a conhecer, compreender e conversar sobre o que aconteceu; depois, permite que a própria leitura se desdobre em uma atividade de troca de cartas e escrita à mão, inspirada na experiência narrada no livro.</p>
+<p></p>
+
+
+                            
+                        
                     </div>
-                {% else %}
-                    <div class="content-loading">
-                        <div class="spinner"></div>
-                        <p style="margin-top: 16px;">Extraindo conteúdo da notícia...</p>
-                    </div>
-                    <div id="extracted-content" class="content-text" style="display: none;"></div>
-                {% endif %}
+                
             </div>
 
             <div id="iframe-view" style="display: none;">
                 <div class="iframe-container">
-                    <iframe src="{{ url }}" sandbox="allow-same-origin allow-scripts allow-forms"
+                    <iframe src="https://fpabramo.org.br/livro-traz-memorias-do-periodo-da-pandemia-em-historias-para-criancas/" sandbox="allow-same-origin allow-scripts allow-forms"
                         onload="hideIframeLoading()"></iframe>
                 </div>
             </div>
@@ -410,62 +397,18 @@
         }
 
         function loadExtractedContent() {
-            {% if static_mode %}
+            
                 // Em modo estático, o conteúdo já está renderizado no HTML
                 return;
-            {% else %}
-                const url = '{{ url }}';
-
-                fetch(`/extrair_conteudo?url=${encodeURIComponent(url)}`)
-                    .then(async response => {
-                        const data = await response.json();
-                        if (!response.ok || !data.sucesso) {
-                            throw new Error(data.error || 'Nao foi possivel extrair o conteudo');
-                        }
-                        return data;
-                    })
-                    .then(data => {
-                        const loadingDiv = document.querySelector('.content-loading');
-                        const contentDiv = document.getElementById('extracted-content');
-
-                        loadingDiv.style.display = 'none';
-
-                        const articleImage = document.getElementById('article-image');
-                        if (data.imagem) {
-                            articleImage.src = data.imagem;
-                            articleImage.style.display = 'block';
-                        }
-
-                        const metaInfo = document.createElement('p');
-                        metaInfo.style.fontSize = '0.8rem';
-                        metaInfo.style.color = 'var(--ink-faint)';
-                        metaInfo.style.marginBottom = '16px';
-                        metaInfo.textContent = `Titulo extraido: ${data.titulo || 'N/A'}`;
-
-                        const extractedBlock = document.createElement('div');
-                        extractedBlock.className = 'content-text';
-                        extractedBlock.innerHTML = data.conteudo || '';
-
-                        contentDiv.innerHTML = '';
-                        contentDiv.appendChild(metaInfo);
-                        contentDiv.appendChild(extractedBlock);
-                        contentDiv.style.display = 'block';
-                    })
-                    .catch(error => {
-                        showExtractError(error.message);
-                    });
-            {% endif %}
+            
         }
 
         function hideIframeLoading() {
             return;
         }
 
-        {% if not static_mode %}
-        document.addEventListener('DOMContentLoaded', loadExtractedContent);
-        {% endif %}
+        
     </script>
 </body>
 
 </html>
-

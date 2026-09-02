@@ -711,7 +711,7 @@
         {% set top = noticias[0] %}
         <div class="headline-banner">
             <div class="kicker">— Notícia de Destaque —</div>
-            <a href="/visualizar?url={{ top.link | urlencode }}&titulo={{ top.titulo | urlencode }}&fonte={{ top.fonte | replace(' ', '+') | replace('&', '%26') }}" onclick="window.open(this.href, '_blank', 'width=900,height=700,scrollbars=yes,resizable=yes'); return false;">
+            <a href="{% if static_mode and top.static_url %}{{ top.static_url }}{% else %}/visualizar?url={{ top.link | urlencode }}&titulo={{ top.titulo | urlencode }}&fonte={{ top.fonte | replace(' ', '+') | replace('&', '%26') }}{% endif %}" onclick="window.open(this.href, '_blank', 'width=900,height=700,scrollbars=yes,resizable=yes'); return false;">
                 <h2>{{ top.titulo }}</h2>
             </a>
             {% if top.resumo %}
@@ -737,7 +737,7 @@
                 {% for noticia in col_news[start:end] %}
                 <article class="article {{ 'drop-cap' if loop.first and col_idx == 0 else '' }}">
                     <div class="article-source">{{ noticia.fonte }}</div>
-                    <h3><a href="/visualizar?url={{ noticia.link | urlencode }}&titulo={{ noticia.titulo | urlencode }}&fonte={{ noticia.fonte | replace(' ', '+') | replace('&', '%26') }}" onclick="window.open(this.href, '_blank', 'width=900,height=700,scrollbars=yes,resizable=yes'); return false;">{{ noticia.titulo }}</a></h3>
+                    <h3><a href="{% if static_mode and noticia.static_url %}{{ noticia.static_url }}{% else %}/visualizar?url={{ noticia.link | urlencode }}&titulo={{ noticia.titulo | urlencode }}&fonte={{ noticia.fonte | replace(' ', '+') | replace('&', '%26') }}{% endif %}" onclick="window.open(this.href, '_blank', 'width=900,height=700,scrollbars=yes,resizable=yes'); return false;">{{ noticia.titulo }}</a></h3>
                     {% if noticia.data %}
                     <div class="byline">Recebido em: {{ noticia.data[:25] }}</div>
                     {% endif %}
@@ -769,7 +769,7 @@
                             </span>
                         </div>
                         <div class="read-more">
-                            <a href="/visualizar?url={{ noticia.link | urlencode }}&titulo={{ noticia.titulo | urlencode }}&fonte={{ noticia.fonte | replace(' ', '+') | replace('&', '%26') }}" onclick="window.open(this.href, '_blank', 'width=900,height=700,scrollbars=yes,resizable=yes'); return false;" class="read-link">
+                            <a href="{% if static_mode and noticia.static_url %}{{ noticia.static_url }}{% else %}/visualizar?url={{ noticia.link | urlencode }}&titulo={{ noticia.titulo | urlencode }}&fonte={{ noticia.fonte | replace(' ', '+') | replace('&', '%26') }}{% endif %}" onclick="window.open(this.href, '_blank', 'width=900,height=700,scrollbars=yes,resizable=yes'); return false;" class="read-link">
                                 LER MATÉRIA COMPLETA →
                             </a>
                         </div>

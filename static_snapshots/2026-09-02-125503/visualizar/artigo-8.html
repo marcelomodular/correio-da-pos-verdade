@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ titulo }} - Politicagem</title>
+    <title>Aubameyang ‘humiliated’ as ex-Arsenal striker quits Gabon national team - Politicagem</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link
         href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap"
@@ -301,16 +301,16 @@
 
         <div class="viewer-header">
             <img id="article-image" class="viewer-image" style="display: none;">
-            <h1 class="viewer-title">{{ titulo }}</h1>
+            <h1 class="viewer-title">Aubameyang ‘humiliated’ as ex-Arsenal striker quits Gabon national team</h1>
             <div class="viewer-meta">
-                <span class="source-tag">{{ fonte }}</span>
+                <span class="source-tag">Al Jazeera</span>
                 <span>Visualizador de Notícias</span>
             </div>
         </div>
 
         <div class="viewer-controls">
             <a href="/" class="btn btn-secondary">← Voltar ao Politicagem</a>
-            <a href="{{ url }}" target="_blank" class="btn">Abrir no Site Original →</a>
+            <a href="https://www.aljazeera.com/sports/2026/9/2/aubameyang-humiliated-as-ex-arsenal-striker-quits-gabon-national-team?traffic_source=rss" target="_blank" class="btn">Abrir no Site Original →</a>
 
             <div class="view-toggle">
                 <button class="toggle-btn active" onclick="showExtracted()">Texto Extraído</button>
@@ -320,45 +320,25 @@
 
         <div class="viewer-content">
             <div id="extracted-view">
-                {% if static_mode and article_data %}
+                
                     <div id="extracted-content" class="content-text">
-                        {% if article_data.sucesso %}
-                            {% if article_data.imagem %}
-                            <img src="{{ article_data.imagem }}" class="viewer-image visible" alt="Imagem do artigo">
-                            {% endif %}
+                        
+                            
+                            <img src="https://www.aljazeera.com/wp-content/uploads/2026/09/2026-04-26T183243Z_1384602915_UP1EM4Q1FIHB4_RTRMADP_3_SOCCER-FRANCE-OM-NIC-1788359742.jpg?resize=1920%2C1440" class="viewer-image visible" alt="Imagem do artigo">
+                            
                             <p style="font-size: 0.8rem; color: var(--ink-faint); margin-bottom: 16px;">
-                                Título extraído: {{ article_data.titulo or 'N/A' }}
+                                Título extraído: Aubameyang ‘humiliated’ as ex-Arsenal striker quits Gabon national team
                             </p>
-                            {{ article_data.conteudo | safe }}
-                            {% if article_data.aviso %}
-                            <p style="font-size: 0.8rem; color: var(--red); margin-top: 16px; font-style: italic;">
-                                {{ article_data.aviso }}
-                            </p>
-                            {% endif %}
-                        {% else %}
-                            <div class="content-error">
-                                <p>Falha ao extrair o conteúdo estático.</p>
-                                <p style="font-size: 0.9rem; margin-top: 12px;">{{ article_data.error or 'Erro desconhecido' }}</p>
-                                <p style="font-size: 0.8rem; margin-top: 16px;">
-                                    <a href="#" onclick="showIframe(); return false;" style="color: var(--red);">
-                                        Tente visualizar o site original
-                                    </a>
-                                </p>
-                            </div>
-                        {% endif %}
+                            <h1>Aubameyang ‘humiliated’ as ex-Arsenal striker quits Gabon national team</h1><p><em>Pierre-Emerick Aubameyang cites 2025 Africa Cup of Nations treatment as captain steps away from Gabon duty.</em></p><p>Published On 2 Sep 20262 Sep 2026</p><p>Gabon captain Pierre-Emerick Aubameyang has announced that he is stepping back from the national team, saying he felt “humiliated” by his exclusion and subsequent reinstatement after the 2025 Africa Cup of Nations (AFCON) in Morocco.</p><p>The top scorer in the history of the Panthers was singled out by the Gabonese government as responsible for the AFCON failure.</p><h2>Recommended Stories </h2>list of 4 itemsend of list<p>“They humiliated and smeared me even though I played at the AFCON while injured,” the 37-year-old said in a television interview.</p><p>“This is the last straw, and I’d rather stop here.”</p><p>Gabon were eliminated from the AFCON in the group stage after three defeats, the last of which came against Ivory Coast.</p><p>“It’s a part of our national identity that has been weakened,” Gabonese President Brice Oligui Nguema said at the time.</p><p>The government <a href="https://www.aljazeera.com/sports/2026/1/1/gabon-government-sacks-aubameyang-suspends-national-team-at-afcon-2025" rel="noopener noreferrer" target="_blank">fired the coaching staff</a>, suspended the team until further notice and sidelined Aubameyang and 38-year-old Bruno Ecuele Manga.</p><p>The suspension of these veteran mainstays of the squad sparked a wave of outrage among Gabonese supporters.</p><p>“I think the team’s problems run much deeper than the little person that I am,” said Aubameyang, who was one of Europe’s top strikers during his time at Borussia Dortmund and Arsenal.</p><p>The Gabonese striker has set himself what is likely to be a final challenge in Europe, leaving Marseille to join Deportivo La Coruna, who have just returned to La Liga after a long spell in the wilderness.</p><p>Gabon’s new national team coach, Sebastien Migne, will now have to plan without Aubameyang as he prepares his team for their first qualifiers later this month for next year’s AFCON.</p><p>Gabon are in Group A with World Cup quarter-finalists Morocco as well as Niger and Lesotho.</p><p> </p><p> </p>
+                            
+                        
                     </div>
-                {% else %}
-                    <div class="content-loading">
-                        <div class="spinner"></div>
-                        <p style="margin-top: 16px;">Extraindo conteúdo da notícia...</p>
-                    </div>
-                    <div id="extracted-content" class="content-text" style="display: none;"></div>
-                {% endif %}
+                
             </div>
 
             <div id="iframe-view" style="display: none;">
                 <div class="iframe-container">
-                    <iframe src="{{ url }}" sandbox="allow-same-origin allow-scripts allow-forms"
+                    <iframe src="https://www.aljazeera.com/sports/2026/9/2/aubameyang-humiliated-as-ex-arsenal-striker-quits-gabon-national-team?traffic_source=rss" sandbox="allow-same-origin allow-scripts allow-forms"
                         onload="hideIframeLoading()"></iframe>
                 </div>
             </div>
@@ -410,62 +390,18 @@
         }
 
         function loadExtractedContent() {
-            {% if static_mode %}
+            
                 // Em modo estático, o conteúdo já está renderizado no HTML
                 return;
-            {% else %}
-                const url = '{{ url }}';
-
-                fetch(`/extrair_conteudo?url=${encodeURIComponent(url)}`)
-                    .then(async response => {
-                        const data = await response.json();
-                        if (!response.ok || !data.sucesso) {
-                            throw new Error(data.error || 'Nao foi possivel extrair o conteudo');
-                        }
-                        return data;
-                    })
-                    .then(data => {
-                        const loadingDiv = document.querySelector('.content-loading');
-                        const contentDiv = document.getElementById('extracted-content');
-
-                        loadingDiv.style.display = 'none';
-
-                        const articleImage = document.getElementById('article-image');
-                        if (data.imagem) {
-                            articleImage.src = data.imagem;
-                            articleImage.style.display = 'block';
-                        }
-
-                        const metaInfo = document.createElement('p');
-                        metaInfo.style.fontSize = '0.8rem';
-                        metaInfo.style.color = 'var(--ink-faint)';
-                        metaInfo.style.marginBottom = '16px';
-                        metaInfo.textContent = `Titulo extraido: ${data.titulo || 'N/A'}`;
-
-                        const extractedBlock = document.createElement('div');
-                        extractedBlock.className = 'content-text';
-                        extractedBlock.innerHTML = data.conteudo || '';
-
-                        contentDiv.innerHTML = '';
-                        contentDiv.appendChild(metaInfo);
-                        contentDiv.appendChild(extractedBlock);
-                        contentDiv.style.display = 'block';
-                    })
-                    .catch(error => {
-                        showExtractError(error.message);
-                    });
-            {% endif %}
+            
         }
 
         function hideIframeLoading() {
             return;
         }
 
-        {% if not static_mode %}
-        document.addEventListener('DOMContentLoaded', loadExtractedContent);
-        {% endif %}
+        
     </script>
 </body>
 
 </html>
-

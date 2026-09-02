@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ titulo }} - Politicagem</title>
+    <title>CGU investiga emendas em favor da produtora de Dark Horse - Politicagem</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link
         href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap"
@@ -301,16 +301,16 @@
 
         <div class="viewer-header">
             <img id="article-image" class="viewer-image" style="display: none;">
-            <h1 class="viewer-title">{{ titulo }}</h1>
+            <h1 class="viewer-title">CGU investiga emendas em favor da produtora de Dark Horse</h1>
             <div class="viewer-meta">
-                <span class="source-tag">{{ fonte }}</span>
+                <span class="source-tag">Piaui</span>
                 <span>Visualizador de Notícias</span>
             </div>
         </div>
 
         <div class="viewer-controls">
             <a href="/" class="btn btn-secondary">← Voltar ao Politicagem</a>
-            <a href="{{ url }}" target="_blank" class="btn">Abrir no Site Original →</a>
+            <a href="https://piaui.uol.com.br/web/cgu-emendas-mario-frias-dark-horse/" target="_blank" class="btn">Abrir no Site Original →</a>
 
             <div class="view-toggle">
                 <button class="toggle-btn active" onclick="showExtracted()">Texto Extraído</button>
@@ -320,45 +320,25 @@
 
         <div class="viewer-content">
             <div id="extracted-view">
-                {% if static_mode and article_data %}
+                
                     <div id="extracted-content" class="content-text">
-                        {% if article_data.sucesso %}
-                            {% if article_data.imagem %}
-                            <img src="{{ article_data.imagem }}" class="viewer-image visible" alt="Imagem do artigo">
-                            {% endif %}
+                        
+                            
+                            <img src="https://piaui.uol.com.br/media/_versions/2026/09/frias_iw094001410_85social.jpg" class="viewer-image visible" alt="Imagem do artigo">
+                            
                             <p style="font-size: 0.8rem; color: var(--ink-faint); margin-bottom: 16px;">
-                                Título extraído: {{ article_data.titulo or 'N/A' }}
+                                Título extraído: CGU investiga emendas em favor da produtora de Dark Horse
                             </p>
-                            {{ article_data.conteudo | safe }}
-                            {% if article_data.aviso %}
-                            <p style="font-size: 0.8rem; color: var(--red); margin-top: 16px; font-style: italic;">
-                                {{ article_data.aviso }}
-                            </p>
-                            {% endif %}
-                        {% else %}
-                            <div class="content-error">
-                                <p>Falha ao extrair o conteúdo estático.</p>
-                                <p style="font-size: 0.9rem; margin-top: 12px;">{{ article_data.error or 'Erro desconhecido' }}</p>
-                                <p style="font-size: 0.8rem; margin-top: 16px;">
-                                    <a href="#" onclick="showIframe(); return false;" style="color: var(--red);">
-                                        Tente visualizar o site original
-                                    </a>
-                                </p>
-                            </div>
-                        {% endif %}
+                             <p>Enquanto o filme <em>Dark Horse</em> não decolava, as ONGs de Karina Ferreira da Gama, dona da produtora Go Up Entertainment, faturaram alto. Uma delas, o Instituto Conhecer Brasil (ICB), capturou um peixe grande: um contrato de 108 milhões de reais com a Prefeitura de São Paulo, na gestão de Ricardo Nunes (MDB), que, pouco depois de ser assinado, recebeu aditivo, saltando para 157 milhões de reais. O objetivo era instalar e manter 5 mil pontos de wi-fi gratuito em comunidades da capital, ainda que o ICB não tivesse nenhuma experiência na área. O contrato hoje é investigado pela Polícia Civil de São Paulo. Mas os problemas das ONGs de Karina não ficaram restritos à esfera municipal.</p> <p>Uma <a href="https://piaui.uol.com.br/revista/240/caixa-preta-flavio-bolsonaro-vorcaro-dark-horse/" rel="noopener noreferrer" target="_blank">reportagem</a> publicada na edição deste mês da <strong>piauí</strong> mostra que uma auditoria da Controladoria-Geral da União (CGU) encontrou tantos problemas em dois projetos do ICB que está tomando providências para pedir o dinheiro de volta e responsabilizar os envolvidos. Os projetos foram financiados com 2 milhões de reais em emendas do deputado Mario Frias (PL-SP). A auditoria foi encaminhada ao inquérito do STF de relatoria do ministro Flávio Dino sobre os desvios de emendas parlamentares do Congresso.</p> <p>A relação de Karina com Frias é anterior às emendas. Em 2022, os sócios da Go Up Entertainment – futura produtora do filme <em>Dark Horse</em>, sobre a vida de Jair Bolsonaro – procuraram Frias, na época secretário especial de Cultura, para tentar viabilizar um projeto de apoio a pequenos produtores culturais. Uma amizade nasceu entre eles. Na campanha eleitoral daquele ano, Karina e seu então marido Wemerson Marinho da Gama prestaram serviços à candidatura de Frias a deputado federal pelo PL. Receberam 54 mil reais. Em dezembro, com auxílio de Frias, a Go Up obteve os direitos cinematográficos do filme de Bolsonaro.</p> <p>Em 2023, já com a adesão de Eduardo Bolsonaro, <em>Dark Horse</em> ganhou corpo e a previsão de orçamento total atingiu uma cifra polpuda: 25,4 milhões de dólares. Era preciso começar logo a captação de recursos para cumprir a previsão de iniciar as filmagens em 30 de outubro de 2024. As primeiras tentativas de captar recursos, porém, não deram em nada. Eduardo, Frias e Flávio Bolsonaro decidiram então passar o chapéu no mercado, mas foram meses e meses de buscas infrutíferas. As coisas só começaram a mudar no fim de 2024, quando apareceu o banqueiro Daniel Vorcaro. Coube ao lobista Thiago Miranda, ex-sócio do Portal Leo Dias, agendar um encontro que se tornaria decisivo entre Flávio e Vorcaro.</p> <p>O encontro foi marcado para 11 de dezembro, quarta-feira, às 17h30, na casa do banqueiro, em Brasília. Não há documento que permita afirmar que a reunião efetivamente ocorreu. Mas, às 18h24 daquele dia, o deputado federal Mario Frias (PL-SP), o ex-ator que consta como produtor executivo do filme, enviou um áudio de 17 segundos para Vorcaro cujo conteúdo dá a entender que o acerto foi feito. “Só te agradecer, meu irmão”, disse Frias, completando que o projeto iria “mexer com o coração de muita gente” e seria “muito importante para o nosso país”.</p> <p>Quatro dias mais tarde, em 15 de dezembro, Frias informou ao banqueiro que convidara o americano Cyrus Nowrasteh para dirigir o filme. Nowrasteh disse que conseguiria convencer o ator Jim Caviezel a interpretar Bolsonaro. Frias celebrou: “Milagres só são possíveis quando há fé.” E completou, em outra mensagem a Vorcaro: “Vai ser a maior superprodução de uma história brasileira.”</p> <p>No segundo semestre de 2024, Karina Gama encontrou mais uma fonte de renda para sua ONG Academia Nacional de Cultura: foi contemplada com 3,6 milhões de reais por iniciativa de quatro deputados bolsonaristas do PL – Carla Zambelli (SP), Marcos Pollon (MS), Delegado Ramagem (RJ) e Bia Kicis (DF).</p> <p>O dinheiro chegou aos cofres do estado de São Paulo, porém não foi repassado à entidade. O governo avaliou que nem todos os requisitos para o repasse estavam sendo atendidos. Essa verba não chegou à ICB, mas chegou outra, decorrente de uma emenda do deputado Mario Frias que despachou 2 milhões de reais para a ONG. O último termo dessa emenda foi assinado em 30 de dezembro de 2024. Por coincidência, no mesmo mês em que Vorcaro concordou em financiar <em>Dark Horse</em>.</p> <p>Os recursos recebidos pelo ICB – tanto os da Prefeitura de São Paulo, quanto os da emenda parlamentar – compõem um enorme mosaico de suspeitas. Em São Paulo, no caso da instalação de wi-fi gratuito, um inquérito policial investiga pagamentos por serviços que nunca foram prestados e a existência de 4 milhões de reais em notas fiscais frias. Uma das empresas subcontratadas pelo ICB, por 12 milhões de reais, pertencia a Alex Bispo dos Santos, que chegou a ser preso por feminicídio, é apontado pelo Ministério Público como membro do PCC e, desde o fim de agosto, está foragido da polícia.</p> <p>Na frente federal, os 2 milhões de reais enviados por Mario Frias financiaram os dois projetos examinados pela CGU. O projeto Lutando pela Vida previa aulas de esportes de combate para quinhentas pessoas em Pirassununga, no interior de São Paulo. Uma auditoria da CGU detectou pagamentos sem comprovante da entrega de bens e da prestação de serviços.</p> <p>O outro projeto, o Jovem Empreendedor, que prometia capacitar 250 pessoas e alcançar 2 250 estudantes de escolas públicas, fez ainda pior. Depois de um ano e meio, a CGU descobriu que o programa não capacitou ninguém e não atendeu nenhum estudante, como mostra a <a href="https://piaui.uol.com.br/revista/240/caixa-preta-flavio-bolsonaro-vorcaro-dark-horse/" rel="noopener noreferrer" target="_blank">reportagem</a> publicada pela <strong>piauí</strong>.</p> <p></p>  
+                            
+                        
                     </div>
-                {% else %}
-                    <div class="content-loading">
-                        <div class="spinner"></div>
-                        <p style="margin-top: 16px;">Extraindo conteúdo da notícia...</p>
-                    </div>
-                    <div id="extracted-content" class="content-text" style="display: none;"></div>
-                {% endif %}
+                
             </div>
 
             <div id="iframe-view" style="display: none;">
                 <div class="iframe-container">
-                    <iframe src="{{ url }}" sandbox="allow-same-origin allow-scripts allow-forms"
+                    <iframe src="https://piaui.uol.com.br/web/cgu-emendas-mario-frias-dark-horse/" sandbox="allow-same-origin allow-scripts allow-forms"
                         onload="hideIframeLoading()"></iframe>
                 </div>
             </div>
@@ -410,62 +390,18 @@
         }
 
         function loadExtractedContent() {
-            {% if static_mode %}
+            
                 // Em modo estático, o conteúdo já está renderizado no HTML
                 return;
-            {% else %}
-                const url = '{{ url }}';
-
-                fetch(`/extrair_conteudo?url=${encodeURIComponent(url)}`)
-                    .then(async response => {
-                        const data = await response.json();
-                        if (!response.ok || !data.sucesso) {
-                            throw new Error(data.error || 'Nao foi possivel extrair o conteudo');
-                        }
-                        return data;
-                    })
-                    .then(data => {
-                        const loadingDiv = document.querySelector('.content-loading');
-                        const contentDiv = document.getElementById('extracted-content');
-
-                        loadingDiv.style.display = 'none';
-
-                        const articleImage = document.getElementById('article-image');
-                        if (data.imagem) {
-                            articleImage.src = data.imagem;
-                            articleImage.style.display = 'block';
-                        }
-
-                        const metaInfo = document.createElement('p');
-                        metaInfo.style.fontSize = '0.8rem';
-                        metaInfo.style.color = 'var(--ink-faint)';
-                        metaInfo.style.marginBottom = '16px';
-                        metaInfo.textContent = `Titulo extraido: ${data.titulo || 'N/A'}`;
-
-                        const extractedBlock = document.createElement('div');
-                        extractedBlock.className = 'content-text';
-                        extractedBlock.innerHTML = data.conteudo || '';
-
-                        contentDiv.innerHTML = '';
-                        contentDiv.appendChild(metaInfo);
-                        contentDiv.appendChild(extractedBlock);
-                        contentDiv.style.display = 'block';
-                    })
-                    .catch(error => {
-                        showExtractError(error.message);
-                    });
-            {% endif %}
+            
         }
 
         function hideIframeLoading() {
             return;
         }
 
-        {% if not static_mode %}
-        document.addEventListener('DOMContentLoaded', loadExtractedContent);
-        {% endif %}
+        
     </script>
 </body>
 
 </html>
-

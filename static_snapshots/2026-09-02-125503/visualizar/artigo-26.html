@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ titulo }} - Politicagem</title>
+    <title>Rumo a uma militância psíquica - Politicagem</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link
         href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap"
@@ -301,16 +301,16 @@
 
         <div class="viewer-header">
             <img id="article-image" class="viewer-image" style="display: none;">
-            <h1 class="viewer-title">{{ titulo }}</h1>
+            <h1 class="viewer-title">Rumo a uma militância psíquica</h1>
             <div class="viewer-meta">
-                <span class="source-tag">{{ fonte }}</span>
+                <span class="source-tag">Jacobin Brasil</span>
                 <span>Visualizador de Notícias</span>
             </div>
         </div>
 
         <div class="viewer-controls">
             <a href="/" class="btn btn-secondary">← Voltar ao Politicagem</a>
-            <a href="{{ url }}" target="_blank" class="btn">Abrir no Site Original →</a>
+            <a href="https://jacobin.com.br/2026/09/rumo-a-uma-militancia-psiquica/" target="_blank" class="btn">Abrir no Site Original →</a>
 
             <div class="view-toggle">
                 <button class="toggle-btn active" onclick="showExtracted()">Texto Extraído</button>
@@ -320,45 +320,44 @@
 
         <div class="viewer-content">
             <div id="extracted-view">
-                {% if static_mode and article_data %}
+                
                     <div id="extracted-content" class="content-text">
-                        {% if article_data.sucesso %}
-                            {% if article_data.imagem %}
-                            <img src="{{ article_data.imagem }}" class="viewer-image visible" alt="Imagem do artigo">
-                            {% endif %}
+                        
+                            
+                            <img src="https://jacobin.com.br/wp-content/uploads/2026/09/648835851758-scaled.jpg" class="viewer-image visible" alt="Imagem do artigo">
+                            
                             <p style="font-size: 0.8rem; color: var(--ink-faint); margin-bottom: 16px;">
-                                Título extraído: {{ article_data.titulo or 'N/A' }}
+                                Título extraído: Rumo a uma militância psíquica
                             </p>
-                            {{ article_data.conteudo | safe }}
-                            {% if article_data.aviso %}
-                            <p style="font-size: 0.8rem; color: var(--red); margin-top: 16px; font-style: italic;">
-                                {{ article_data.aviso }}
-                            </p>
-                            {% endif %}
-                        {% else %}
-                            <div class="content-error">
-                                <p>Falha ao extrair o conteúdo estático.</p>
-                                <p style="font-size: 0.9rem; margin-top: 12px;">{{ article_data.error or 'Erro desconhecido' }}</p>
-                                <p style="font-size: 0.8rem; margin-top: 16px;">
-                                    <a href="#" onclick="showIframe(); return false;" style="color: var(--red);">
-                                        Tente visualizar o site original
-                                    </a>
-                                </p>
-                            </div>
-                        {% endif %}
+                            
+<p>“Mate o policial que existe na sua cabeça” é um slogan familiar — e frequentemente pichado por aí — na esquerda: um chamado para confrontar as vozes de autoridade que moldam nossa maneira de pensar e agir muito antes de qualquer força externa intervir. Mas se a dominação opera tanto interna quanto externamente, que tipo de prática política é necessária para confrontá-la?</p>
+<p>Essa questão está no centro da obra de Lara Sheehi, <em>From the clinic to the streets: Psychoanalysis for revolutionary futures </em>[Da clínica às ruas: Psicanálise para futuros revolucionários]. Psicoterapeuta atuante, Sheehi defende a “apropriação” do conhecimento psicanalítico das instituições que historicamente o moldaram, ressignificando-o a serviço do que ela chama de “militância psíquica”.</p>
+<p>À esquerda, a psicanálise tem sido criticada há muito tempo por suas tendências normalizadoras e pelo impulso de <a href="https://newleftreview.org/issues/i47/articles/theodor-adorno-sociology-and-psychology-part-ii" rel="noopener noreferrer" target="_blank">reconciliar as pessoas com condições socialmente intoleráveis</a> ​​em vez de ajudá-las a resistir a elas. Mas ela também contém uma tradição mais radical, que se estende das <a href="https://freepsyproject.com/" rel="noopener noreferrer" target="_blank">clínicas gratuitas</a> do início do século XX aos escritos de Wilhelm Reich sobre o fascismo e às análises de Frantz Fanon sobre <a href="https://tribunemag.co.uk/2020/07/remembering-frantz-fanon" rel="noopener noreferrer" target="_blank">a violência colonial e a internalização psíquica</a>.</p>
+<p>Partindo dessa história, Sheehi argumenta que a psicanálise pode se tornar algo mais do que uma ferramenta de ajuste, ajudando a explicar tanto como nos tornamos aprisionados por ordens sociais opressivas quanto como esses vínculos podem ser coletivamente contestados. Nesse sentido, <em>From the clinic to the streets</em> não é um livro apenas para terapeutas ou seus pacientes; embora contenha muitas ideias psicanalíticas, Sheehi está, em última análise, interessada na questão mais ampla de como ideologias violentas se enraízam por meio da guerra psicológica.</p>
+<p>A guerra psicológica, que se baseia na <a href="http://www7.bbk.ac.uk/hiddenpersuaders/" rel="noopener noreferrer" target="_blank">psicanálise e em outras disciplinas da psicologia</a>, há muito faz parte de ataques coordenados contra revolucionários e povos colonizados. O COINTELPRO do FBI, por exemplo, usou vigilância e campanhas de desinformação para gerar paranoia, desconfiança e fragmentação dentro de organizações radicais negras, com o objetivo de “expor, desestabilizar, desviar, desacreditar e neutralizar” o movimento.</p>
+<p>Táticas como a “denúncia” — acusar falsamente ativistas de serem informantes da polícia — também foram usadas contra líderes como Huey P. Newton, corroendo a confiança interna. Uma <a href="https://files.libcom.org/files/WATP.pdf" rel="noopener noreferrer" target="_blank">carta forjada do FBI</a> alertava que Newton poderia estar “trabalhando para o porco Reagan… Não conte muito a ele — pode acabar nas mãos dos porcos”. As estratégias israelenses de <a href="https://www.doctorswithoutborders.ca/palestine-israeli-displacement-orders-in-gaza-are-psychological-warfare/" rel="noopener noreferrer" target="_blank">guerra psicológica</a> contra os palestinos também se estenderam além da força militar, produzindo continuamente medo e instabilidade como condições cotidianas sob a ocupação.</p>
+<p>Esses podem parecer exemplos extremos. Mas, para Sheehi, tais táticas não se restringem a operações secretas do Estado: sob o capitalismo colonial, a guerra psicológica torna-se parte do cotidiano, moldando o que as pessoas se sentem capazes de dizer, desejar, imaginar ou resistir. Ela descreve essas pressões como “intrusões psíquicas”, formas de violência política e ideológica que geram exaustão e desesperança, e que gradualmente corroem nossa capacidade de resistir.</p><a href="https://www.camisacritica.com/collections/jacobin" rel="noopener noreferrer" target="_blank"><img alt="" src="https://jacobin.com.br/wp-content/uploads/2022/05/Camisetas.gif"/></a>
+<p>Se seguirmos a lógica do discurso liberal contemporâneo sobre saúde mental, com sua ênfase na consciência e no autoconhecimento, o simples reconhecimento dessas intrusões poderia oferecer algum grau de proteção. Mas esse não é o caso, pelo menos para os pacientes que Sheehi descreve: mesmo aqueles que se articulam de maneira clara e resistem ativamente à violência ao seu redor acabam começando a sentir que estão “enlouquecendo”. É um sentimento familiar para qualquer pessoa com posicionamentos políticos radicais: a sensação, ao ler as notícias ou conversar com antagonistas políticos, de que estamos perdendo a cabeça; que as palavras não têm significado; que a realidade está nos escapando. Em vez de interpretar isso como evidência de uma incapacidade individual de lidar com a realidade, Sheehi vê como uma resposta à pressão constante para negar, racionalizar ou acomodar o sofrimento — e para viver como se essas contradições enlouquecedoras fossem normais ou simplesmente não existissem.</p>
+<p>O que podemos fazer, então, em um mundo que nos faz sentir como se fôssemos loucos por perceber e nomear o sofrimento coletivo com o qual convivemos? O último capítulo do livro traz o título irônico de “Afirmações para a militância psíquica”, mas, claramente, a resistência não pode ser reduzida ao pensamento positivo ou à “reprogramação” de nós mesmos contra o bombardeio constante de intrusões psíquicas.</p>
+<p>O primeiro passo, argumenta Sheehi, é reconhecer as intrusões à medida que ocorrem, “recusando sua intenção de dominar, minar ou reconfigurar nossos mundos internos” e comprometendo-se a tratar a libertação não como um ideal distante, mas como um ponto de partida inegociável para a vida política. De certa forma, isso se assemelha às tradições de conscientização, mas com um foco mais explícito nas forças inconscientes que afastam as pessoas da luta coletiva.</p>
+<p>Contudo, isso não pode ser um momento isolado de clareza política. Baseando-se na ideia freudiana de compulsão à repetição — a tendência de repetir inconscientemente padrões dolorosos ou não resolvidos — Sheehi propõe que a militância psíquica também deve se tornar repetitiva, uma prática diária de retorno à luta, reafirmando a possibilidade de libertação e recusando a resignação que os sistemas opressivos se esforçam para produzir. Fundamentalmente, trata-se de um esforço coletivo, não individual, algo realizado com os outros, em vez de alcançado sozinho ou no encontro psicanalítico diádico clássico.</p>
+<p>Como a própria Sheehi reconhece, isso é mais fácil dizer do que fazer; o livro não pode ser lido como um manual de instruções para domar o inconsciente. Desejos, fantasias e apegos nem sempre operam de maneira lógica ou controlável, e muitas vezes agimos contra nossos próprios interesses, repetimos padrões destrutivos ou permanecemos emocionalmente ligados a condições que rejeitamos conscientemente. Nesse aspecto, o livro se destaca não como um programa político concreto, mas por fornecer uma linguagem para compreender como a opressão se instala na vida psíquica.</p>
+<p>Num momento em que o desespero e a desorientação estruturam cada vez mais o cotidiano, <em>From the clinic to the streets</em> oferece um argumento convincente para compreender a vida psíquica como parte integrante do campo da luta. Em meio às inúmeras pressões que nos empurram para a resignação e a derrota, o livro insiste que a libertação continua a ser um compromisso político vivo, e não apenas uma fantasia que abandonamos de antemão.</p>
+<p></p><p></p><p><h5>Emily Oliver</h5></p><p>é escritora e psicoterapeuta psicanalítica em formação. Ela mora em Londres.</p><p></p>
+
+
+
+
+
+                            
+                        
                     </div>
-                {% else %}
-                    <div class="content-loading">
-                        <div class="spinner"></div>
-                        <p style="margin-top: 16px;">Extraindo conteúdo da notícia...</p>
-                    </div>
-                    <div id="extracted-content" class="content-text" style="display: none;"></div>
-                {% endif %}
+                
             </div>
 
             <div id="iframe-view" style="display: none;">
                 <div class="iframe-container">
-                    <iframe src="{{ url }}" sandbox="allow-same-origin allow-scripts allow-forms"
+                    <iframe src="https://jacobin.com.br/2026/09/rumo-a-uma-militancia-psiquica/" sandbox="allow-same-origin allow-scripts allow-forms"
                         onload="hideIframeLoading()"></iframe>
                 </div>
             </div>
@@ -410,62 +409,18 @@
         }
 
         function loadExtractedContent() {
-            {% if static_mode %}
+            
                 // Em modo estático, o conteúdo já está renderizado no HTML
                 return;
-            {% else %}
-                const url = '{{ url }}';
-
-                fetch(`/extrair_conteudo?url=${encodeURIComponent(url)}`)
-                    .then(async response => {
-                        const data = await response.json();
-                        if (!response.ok || !data.sucesso) {
-                            throw new Error(data.error || 'Nao foi possivel extrair o conteudo');
-                        }
-                        return data;
-                    })
-                    .then(data => {
-                        const loadingDiv = document.querySelector('.content-loading');
-                        const contentDiv = document.getElementById('extracted-content');
-
-                        loadingDiv.style.display = 'none';
-
-                        const articleImage = document.getElementById('article-image');
-                        if (data.imagem) {
-                            articleImage.src = data.imagem;
-                            articleImage.style.display = 'block';
-                        }
-
-                        const metaInfo = document.createElement('p');
-                        metaInfo.style.fontSize = '0.8rem';
-                        metaInfo.style.color = 'var(--ink-faint)';
-                        metaInfo.style.marginBottom = '16px';
-                        metaInfo.textContent = `Titulo extraido: ${data.titulo || 'N/A'}`;
-
-                        const extractedBlock = document.createElement('div');
-                        extractedBlock.className = 'content-text';
-                        extractedBlock.innerHTML = data.conteudo || '';
-
-                        contentDiv.innerHTML = '';
-                        contentDiv.appendChild(metaInfo);
-                        contentDiv.appendChild(extractedBlock);
-                        contentDiv.style.display = 'block';
-                    })
-                    .catch(error => {
-                        showExtractError(error.message);
-                    });
-            {% endif %}
+            
         }
 
         function hideIframeLoading() {
             return;
         }
 
-        {% if not static_mode %}
-        document.addEventListener('DOMContentLoaded', loadExtractedContent);
-        {% endif %}
+        
     </script>
 </body>
 
 </html>
-

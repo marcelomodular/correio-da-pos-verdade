@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ titulo }} - Politicagem</title>
+    <title>Famílias poderão concluir inventário em cartório sem pagar imposto sobre herança, diz CNJ - Politicagem</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link
         href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap"
@@ -301,16 +301,16 @@
 
         <div class="viewer-header">
             <img id="article-image" class="viewer-image" style="display: none;">
-            <h1 class="viewer-title">{{ titulo }}</h1>
+            <h1 class="viewer-title">Famílias poderão concluir inventário em cartório sem pagar imposto sobre herança, diz CNJ</h1>
             <div class="viewer-meta">
-                <span class="source-tag">{{ fonte }}</span>
+                <span class="source-tag">ICL Noticias</span>
                 <span>Visualizador de Notícias</span>
             </div>
         </div>
 
         <div class="viewer-controls">
             <a href="/" class="btn btn-secondary">← Voltar ao Politicagem</a>
-            <a href="{{ url }}" target="_blank" class="btn">Abrir no Site Original →</a>
+            <a href="https://iclnoticias.com.br/economia/familias-poderao-concluir-inventario/" target="_blank" class="btn">Abrir no Site Original →</a>
 
             <div class="view-toggle">
                 <button class="toggle-btn active" onclick="showExtracted()">Texto Extraído</button>
@@ -320,45 +320,63 @@
 
         <div class="viewer-content">
             <div id="extracted-view">
-                {% if static_mode and article_data %}
+                
                     <div id="extracted-content" class="content-text">
-                        {% if article_data.sucesso %}
-                            {% if article_data.imagem %}
-                            <img src="{{ article_data.imagem }}" class="viewer-image visible" alt="Imagem do artigo">
-                            {% endif %}
+                        
+                            
+                            <img src="https://iclnoticias.com.br/app/uploads/2025/11/CNJ-agencia-brasil.webp" class="viewer-image visible" alt="Imagem do artigo">
+                            
                             <p style="font-size: 0.8rem; color: var(--ink-faint); margin-bottom: 16px;">
-                                Título extraído: {{ article_data.titulo or 'N/A' }}
+                                Título extraído: Famílias poderão concluir inventário em cartório sem pagar imposto sobre herança, diz CNJ
                             </p>
-                            {{ article_data.conteudo | safe }}
-                            {% if article_data.aviso %}
-                            <p style="font-size: 0.8rem; color: var(--red); margin-top: 16px; font-style: italic;">
-                                {{ article_data.aviso }}
-                            </p>
-                            {% endif %}
-                        {% else %}
-                            <div class="content-error">
-                                <p>Falha ao extrair o conteúdo estático.</p>
-                                <p style="font-size: 0.9rem; margin-top: 12px;">{{ article_data.error or 'Erro desconhecido' }}</p>
-                                <p style="font-size: 0.8rem; margin-top: 16px;">
-                                    <a href="#" onclick="showIframe(); return false;" style="color: var(--red);">
-                                        Tente visualizar o site original
-                                    </a>
-                                </p>
-                            </div>
-                        {% endif %}
+                            
+<p><strong>Por Márcia Magalhães</strong></p>
+<p>(Folhapress) – Famílias que queiram dividir bens deixados como herança não precisarão mais pagar o <a href="https://portal.fazenda.sp.gov.br/servicos/itcmd" rel="noopener noreferrer" target="_blank">ITCMD</a> (Imposto sobre Transmissão Causa Mortis e Doação) para concluir o inventário em cartório e ter acesso à escritura pública.</p>
+<p>É o que decidiu o <a href="https://iclnoticias.com.br/oab-pr-cnj-tirar-ministros-stf-cargo/" rel="noopener noreferrer" target="_blank">CNJ</a> (Conselho Nacional de Justiça) no fim do mês de agosto diante de solicitação realizada pelo CNB (Colégio Notarial do Brasil).</p>
+<p>De acordo com a decisão do conselho, que é administrativa e alcança tabeliães, registradores e corregedorias, o ITCMD continua sendo cobrado, mas posteriormente, em momento definido pelo estado responsável, sem ser pré-requisito para que a escritura de inventário seja lavrada (elaborada e assinada no cartório de notas).</p>
+<p>Acontece que, como o imposto é estadual, algumas leis locais estabelecem regras próprias relacionadas à atuação do tabelião e ao momento do recolhimento do tributo, condicionando a lavratura da escritura ao pagamento do imposto, o que pode gerar conflitos com a nova medida.</p>
+<p>Os estados de São Paulo, Rio de Janeiro e Paraná, por exemplo, apresentam essa condição em suas legislações.</p>
+<p>O inventário é usado para formalizar a divisão dos bens deixados por uma pessoa que morreu. Ele pode ser judicial, quando um juiz decide ou homologa a partilha, ou extrajudicial, quando é realizado em um cartório de notas.</p>
+<p>A modalidade extrajudicial resulta em uma escritura pública, que registra quem ficará com cada bem e serve de título para a transferência de imóveis, veículos, participações em empresas, valores e outros direitos.</p>
+<img alt="" src="https://iclnoticias.com.br/app/uploads/2025/10/cnj-2020.webp"/><em>Decisão vincula tabeliães, mas conflita com legislações estaduais; RJ e SP seguirão com a exigência (Foto: CNJ / Divulgação)</em>
+<h2>Cobrança</h2>
+<p>As Secretarias da Fazenda de São Paulo e do Rio de Janeiro afirmaram à reportagem que a cobrança do ITCMD em inventários extrajudiciais seguirá sendo feita antes da lavratura da escritura.</p>
+<p>“A nova diretriz do CNJ não afasta a obrigação tributária das partes, tampouco a responsabilidade do notário e não vincula o ente tributante estadual, que cumprirá o determinado na legislação vigente”, afirmou o estado de São Paulo em nota.</p>
+<p>O Rio de Janeiro, por sua vez, disse que a decisão do CNJ tem natureza administrativa e disciplina a atuação dos serviços notariais, motivo pelo qual não altera a legislação tributária do estado.</p>
+<p>“A manutenção da exigência da declaração e da guia antes da escritura constitui importante mecanismo de controle, pois permite que o estado verifique a ocorrência do fato gerador, a correta avaliação dos bens e o pagamento do imposto antes da disponibilização do patrimônio aos sucessores”, disse.</p>
+<p>Já a Secretaria da Fazenda do Paraná declarou que, conforme a decisão do CNJ, o cartório ficará afastado da responsabilidade pelo recolhimento do tributo, mas continua obrigado a cumprir obrigações acessórias, como é o caso da declaração do ITCMD.</p>
+<p>O estado afirmou ainda não vislumbrar potencial de perda de arrecadação, já que os cartórios deverão informar ao fisco as escrituras lavradas sem o recolhimento do imposto. Mas destacou que, se não houver comunicação, o tabelião poderá ser responsabilizado solidariamente.</p>
+<h2>Especialista</h2>
+<p>De acordo com o advogado Jaylton Lopes, sócio do escritório Agi, Santa Cruz &amp; Lopes Advocacia, após a decisão do CNJ, alguns tabeliães já demonstraram preocupação em, por um lado, não poderem impedir a lavratura da escritura de inventário com base na ausência do pagamento prévio do ITCMD e, por outro, ter o dever de fiscalização dos tributos.</p>
+<p>Para ele, porém, o dever de fiscalização do tabelião não o torna um agente de cobrança do estado, que tem mecanismos próprios para exigir o crédito tributário. O advogado explica que esse dever de fiscalização estará sendo atendido com o lançamento da informação de que o imposto não foi pago e a comunicação disso ao fisco.</p>
+<p>“Vai ser bom para todo mundo. O tráfego jurídico melhora, o tabelião arrecada, porque ele já consegue lavrar a escritura pública, o herdeiro que quer pagar já paga para o Estado, o Estado já recebe. Até a economia consegue uma movimentação maior com isso”, diz.</p>
+<p>Lopes considera que a decisão do CNJ é positiva, porque, com a escritura, os herdeiros já conseguem ter acesso imediato a alguns bens do patrimônio.</p>
+<p>Se uma pessoa, por exemplo, herdou R$ 200 mil, ela já consegue sacar esse dinheiro.</p>
+<p>Na regra antiga, ou todos os herdeiros dos bens pagavam o ITCMD para ter a escritura ou o documento não era emitido, deixando os herdeiros impedidos de ter acesso aos bens, ainda que algum deles pudesse pagar o imposto equivalente à sua parte.</p>
+<p>“Um dos grandes dramas para muitos herdeiros era ter um inventário amigável que eles não conseguiam fazer no cartório porque um deles, por exemplo, tinha dinheiro para pagar o ITCMD e os outros não. A alteração remove esse obstáculo, que era o que mais travava inventários consensuais no país”, afirma o advogado.</p>
+<p>Segundo o CNB, essa dispensa do pagamento prévio do imposto pode beneficiar principalmente famílias cujo patrimônio está concentrado nos próprios bens deixados pelo falecido.</p>
+<p>É o caso, por exemplo, de uma família que herda um imóvel de R$ 1 milhão, mas não dispõe de dinheiro em conta para pagar imediatamente o imposto incidente sobre a transmissão, cuja alíquota varia entre 1% e 8% a depender do estado.</p>
+<p>Apesar de o CNJ ter afastado a exigência de pagamento prévio do ITCMD para que o cartório faça a escritura de inventário e partilha, o registro do imóvel, que formaliza a aquisição da propriedade imobiliária e ocorre em uma etapa posterior, continua sujeito à comprovação de pagamento do imposto.</p>
+<p>Isso significa que a família pode conseguir a escritura que divide a herança sem precisar primeiro juntar todo o dinheiro do imposto, mas quando um imóvel for levado ao registro por determinado herdeiro, será analisado se houve o pagamento do ITCMD.</p>
+<p>Segundo Lopes, disso pode-se extrair uma estratégia de partilha.</p>
+<p>“Sempre que houver mais de um imóvel e herdeiros com capacidades financeiras distintas, procure construir o acordo de modo a atribuir imóveis determinados ao herdeiro que pode pagar o imposto, em lugar de deixar todos em condomínio sobre todos os bens. Havendo desequilíbrio de valores, compense com dinheiro, com bens móveis ou com outros elementos do acervo”, diz.</p>
+<p>Para o advogado, ainda, a mudança também possibilita que um herdeiro que tenha disponibilidade financeira pague sua parte do ITCMD e requeira o registro dela, independentemente do pagamento do imposto por parte dos demais herdeiros.</p>
+<p>A nova regra elimina uma barreira em um procedimento que vem registrando crescimento expressivo no país. Segundo o CNB, foram realizadas 3.114.091 escrituras de inventário no país entre 2007, quando o procedimento passou a ser permitido em cartórios, e julho de 2026. Na comparação entre 2007 e 2025, o número anual de inventários cresceu aproximadamente 580%.</p>
+<p>Essa alteração, contudo, não afasta as obrigações tributárias dos herdeiros. De acordo com a decisão do CNJ, o tabelião deverá registrar na escritura que as partes têm ciência da obrigação de apurar e recolher o ITCMD conforme a legislação aplicável.</p>
+<p>Se o imposto não tiver sido pago antes da escritura, o cartório deverá comunicar a realização do ato ao fisco no prazo de cinco dias, ou no prazo que for estabelecido pela legislação tributária estadual.</p>
+<p>Da mesma forma, a dispensa do pagamento prévio não elimina eventuais multas decorrentes do atraso.</p>
+<p>O CNJ esclareceu também que, em que pese a não exigência do pagamento antecipado do ITCMD, continua cabendo ao tabelião a solicitação de certidões negativas de débitos, fazendo constar do ato notarial a informação sobre a existência de eventuais dívidas.</p>
+
+
+                            
+                        
                     </div>
-                {% else %}
-                    <div class="content-loading">
-                        <div class="spinner"></div>
-                        <p style="margin-top: 16px;">Extraindo conteúdo da notícia...</p>
-                    </div>
-                    <div id="extracted-content" class="content-text" style="display: none;"></div>
-                {% endif %}
+                
             </div>
 
             <div id="iframe-view" style="display: none;">
                 <div class="iframe-container">
-                    <iframe src="{{ url }}" sandbox="allow-same-origin allow-scripts allow-forms"
+                    <iframe src="https://iclnoticias.com.br/economia/familias-poderao-concluir-inventario/" sandbox="allow-same-origin allow-scripts allow-forms"
                         onload="hideIframeLoading()"></iframe>
                 </div>
             </div>
@@ -410,62 +428,18 @@
         }
 
         function loadExtractedContent() {
-            {% if static_mode %}
+            
                 // Em modo estático, o conteúdo já está renderizado no HTML
                 return;
-            {% else %}
-                const url = '{{ url }}';
-
-                fetch(`/extrair_conteudo?url=${encodeURIComponent(url)}`)
-                    .then(async response => {
-                        const data = await response.json();
-                        if (!response.ok || !data.sucesso) {
-                            throw new Error(data.error || 'Nao foi possivel extrair o conteudo');
-                        }
-                        return data;
-                    })
-                    .then(data => {
-                        const loadingDiv = document.querySelector('.content-loading');
-                        const contentDiv = document.getElementById('extracted-content');
-
-                        loadingDiv.style.display = 'none';
-
-                        const articleImage = document.getElementById('article-image');
-                        if (data.imagem) {
-                            articleImage.src = data.imagem;
-                            articleImage.style.display = 'block';
-                        }
-
-                        const metaInfo = document.createElement('p');
-                        metaInfo.style.fontSize = '0.8rem';
-                        metaInfo.style.color = 'var(--ink-faint)';
-                        metaInfo.style.marginBottom = '16px';
-                        metaInfo.textContent = `Titulo extraido: ${data.titulo || 'N/A'}`;
-
-                        const extractedBlock = document.createElement('div');
-                        extractedBlock.className = 'content-text';
-                        extractedBlock.innerHTML = data.conteudo || '';
-
-                        contentDiv.innerHTML = '';
-                        contentDiv.appendChild(metaInfo);
-                        contentDiv.appendChild(extractedBlock);
-                        contentDiv.style.display = 'block';
-                    })
-                    .catch(error => {
-                        showExtractError(error.message);
-                    });
-            {% endif %}
+            
         }
 
         function hideIframeLoading() {
             return;
         }
 
-        {% if not static_mode %}
-        document.addEventListener('DOMContentLoaded', loadExtractedContent);
-        {% endif %}
+        
     </script>
 </body>
 
 </html>
-
