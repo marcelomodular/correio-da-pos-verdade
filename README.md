@@ -1,7 +1,7 @@
 
 ## Sobre o projeto
 
-O **Politicagem** é um agregador de notícias que reúne em uma única página os principais despachos de veículos independentes, investigativos, progressistas e de esquerda do Brasil e América Latina. A interface imita a estética dos jornais impressos da década de 1930 — tipografia serifada, colunas, capitulares e papel envelhecido — como contraponto irônico à era da desinformação.
+O **Politicagem** é um agregador de notícias que reúne em uma única página os principais despachos de veículos independentes, investigativos, progressistas e de esquerda do Brasil e América Latina. 
 
 As notícias são buscadas em tempo real via **RSS**, sem armazenamento em banco de dados. Cada visita apresenta uma notícia principal selecionada aleatoriamente, e todas as matérias são ordenadas cronologicamente por horário de publicação.
 
